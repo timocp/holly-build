@@ -15,3 +15,10 @@
       shell: /usr/bin/zsh
       groups: sudo,export
       append: yes
+  handlers:
+    - name: Restart samba
+      service: name={{item}} state=restarted
+      with_items:
+      - smbd
+      - smbd
+      - samba-ad-dc

@@ -17,3 +17,4 @@
   copy:
     src: files/smb.conf
     dest: /etc/samba/smb.conf
+  notify: Restart samba
