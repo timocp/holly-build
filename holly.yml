@@ -1,0 +1,17 @@
+---
+- hosts: all
+  remote_user: tim
+  become: yes
+  become_method: su
+  tasks:
+  - include: packages.yml
+  - include: samba.yml
+  - include: minecraft.yml
+  - include: ntp.yml
+  - include: backup.yml
+  - name: Configure user tim
+    user:
+      name: tim
+      shell: /usr/bin/zsh
+      groups: sudo,export
+      append: yes

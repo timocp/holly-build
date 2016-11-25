@@ -1,0 +1,8 @@
+---
+- name: Create minecraft user
+  user:
+    name: minecraft
+- name: Install java
+  apt:
+    name: openjdk-7-jre
+    state: present

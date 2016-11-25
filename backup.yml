@@ -1,0 +1,7 @@
+---
+- name: Create backup directory
+  file:
+    path: /srv/backup
+    state: directory
+    mode: 0755
+  # TODO: scripts etc in /root, and add crontab record

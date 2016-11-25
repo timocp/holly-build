@@ -1,0 +1,19 @@
+---
+- name: Create export user
+  user:
+    name: export
+- name: Create media directory
+  file:
+    path: /srv/media
+    state: directory
+    mode: 0775
+    owner: export
+    group: export
+- name: Install samba
+  apt:
+    name: samba
+    state: present
+- name: Copy samba configuration file
+  copy:
+    src: files/smb.conf
+    dest: /etc/samba/smb.conf
