@@ -6,3 +6,12 @@
   apt:
     name: openjdk-7-jre
     state: present
+- name: Configure minecraft service
+  copy:
+    src: files/minecraft.service
+    dest: /etc/systemd/system/minecraft.service
+- name: Start minecraft service
+  service:
+    name: minecraft
+    enabled: yes
+    state: started
