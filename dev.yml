@@ -1,0 +1,28 @@
+---
+- name: Install development packages
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+  - git
+  # rvm's ruby deps:
+  - gawk
+  - g++
+  - gcc
+  - make
+  - libc6-dev
+  - libreadline6-dev
+  - zlib1g-dev
+  - libssl-dev
+  - libyaml-dev
+  - libsqlite3-dev
+  - sqlite3
+  - autoconf
+  - libgmp-dev
+  - libgdbm-dev
+  - libncurses5-dev
+  - automake
+  - libtool
+  - bison
+  - pkg-config
+  - libffi-dev

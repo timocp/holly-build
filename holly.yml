@@ -9,6 +9,7 @@
   - include: minecraft.yml
   - include: ntp.yml
   - include: backup.yml
+  - include: dev.yml
   - name: Configure user tim
     user:
       name: tim
