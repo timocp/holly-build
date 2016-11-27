@@ -23,3 +23,5 @@
       - smbd
       - nmbd
       - samba-ad-dc
+  vars:
+    minecraft_version: 1.11

@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 User=minecraft
-WorkingDirectory=/home/minecraft/minecraft
-ExecStart=/usr/bin/java -Xms1G -Xmx2G -server -jar minecraft_server.1.11.jar nogui
+WorkingDirectory=/home/minecraft/server
+ExecStart=/usr/bin/java -Xms1G -Xmx2G -server -jar minecraft_server.{{minecraft_version}}.jar nogui
 Restart=always
 RestartSec=60
 
