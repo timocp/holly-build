@@ -4,4 +4,24 @@
     path: /srv/backup
     state: directory
     mode: 0755
-  # TODO: scripts etc in /root, and add crontab record
+- name: Create archive directory
+  file:
+    path: /srv/duplicity-archive
+    state: directory
+    mode: 0700
+- name: Install duplicity
+  apt:
+    name: duplicity
+    state: present
+- name: Copy backup script
+  copy:
+    src: files/backup.sh
+    dest: /root/backup.sh
+    mode: 0700
+- name: Schedule backups
+  cron:
+    name: backup
+    user: root
+    hour: 4
+    minute: 0
+    job: /root/backup.sh
