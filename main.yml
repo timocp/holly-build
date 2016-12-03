@@ -7,7 +7,6 @@
   - include: packages.yml
   - include: samba.yml
   - include: minecraft.yml
-  - include: ntp.yml
   - include: backup.yml
   - include: dev.yml
   - name: Configure user tim
