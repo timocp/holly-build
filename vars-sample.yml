@@ -1,0 +1,10 @@
+---
+wifi_ssid: "****"
+wifi_pass: "****"
+wifi_device: wlan0
+bridge_device: br0
+bridge_address: 192.168.178.35
+bridge_netmask: 255.255.255.0
+bridge_network: 192.168.178.0
+bridge_gateway: 192.168.178.1
+bridge_dns: 192.168.178.1

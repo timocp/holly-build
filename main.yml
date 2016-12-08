@@ -9,6 +9,7 @@
   - include: minecraft.yml
   - include: backup.yml
   - include: dev.yml
+  - include: wifi.yml
   - name: Configure user tim
     user:
       name: tim
@@ -22,5 +23,15 @@
       - smbd
       - nmbd
       - samba-ad-dc
+    - name: Restart hostapd
+      service:
+        name: hostapd
+        state: restarted
+    - name: Restart networking
+      service:
+        name: networking
+        state: restarted
   vars:
     minecraft_version: 1.11
+  vars_files:
+    - vars.yml
