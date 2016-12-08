@@ -26,3 +26,14 @@
   - bison
   - pkg-config
   - libffi-dev
+- name: Download Go
+  get_url:
+    url: https://storage.googleapis.com/golang/go{{go_version}}.linux-amd64.tar.gz
+    dest: /usr/local/src/go{{go_version}}.linux-amd64.tar.gz
+    checksum: sha256:{{go_checksum}}
+- name: Install Go
+  unarchive:
+    remote_src: yes
+    src: /usr/local/src/go{{go_version}}.linux-amd64.tar.gz
+    dest: /usr/local
+    creates: /usr/local/go
