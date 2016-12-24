@@ -12,11 +12,11 @@
     state: directory
     owner: minecraft
     group: minecraft
-    mode: 0700
+    mode: 0750
 - name: Download minecraft server software
   get_url:
     url: https://s3.amazonaws.com/Minecraft.Download/versions/{{minecraft_version}}/minecraft_server.{{minecraft_version}}.jar
-    checksum: sha1:48820c84cb1ed502cb5b2fe23b8153d5e4fa61c0
+    checksum: "{{minecraft_checksum}}"
     dest: /home/minecraft/server/minecraft_server.{{minecraft_version}}.jar
     owner: minecraft
     group: minecraft
