@@ -10,6 +10,7 @@
   - include: backup.yml
   - include: dev.yml
   - include: wifi.yml
+  - include: dlna.yml
   - name: Configure user tim
     user:
       name: tim
@@ -30,6 +31,10 @@
     - name: Restart networking
       service:
         name: networking
+        state: restarted
+    - name: Restart minidlna
+      service:
+        name: minidlna
         state: restarted
   vars_files:
     - vars.yml

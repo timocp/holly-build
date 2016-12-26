@@ -1,0 +1,11 @@
+---
+- name: Install minidlna
+  apt:
+    name: minidlna
+    state: present
+- name: Configure minidlna
+  lineinfile:
+    dest: /etc/minidlna.conf
+    regexp: "^media_dir="
+    line: "media_dir=/srv/media"
+  notify: Restart minidlna
