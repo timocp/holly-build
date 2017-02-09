@@ -8,7 +8,9 @@
     name: "{{item}}"
     state: present
   with_items:
+  - apg     # password generatod
   - apt-file
+  - bmon
   - curl
   - ntp
   - rsync
