@@ -11,6 +11,7 @@
   - include: dev.yml
   - include: wifi.yml
   - include: dlna.yml
+  - include: database.yml
   - name: Configure user tim
     user:
       name: tim

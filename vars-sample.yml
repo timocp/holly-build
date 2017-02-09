@@ -12,3 +12,7 @@ go_version: 1.7.4
 go_checksum: 47fda42e46b4c3ec93fa5d4d4cc6a748aa3f9411a2a2b7e08e3a6d80d753ec8b
 minecraft_version: 1.11.2
 minecraft_checksum: sha1:f00c294a1576e03fddcac777c3cf4c7d404c4ba4
+database_users:
+  # echo md5$(echo -n "pass1user1" | md5sum) 
+  - name: user1
+    pass: md55e4eab96e8b9868ed28cc79c9ceec8b3

@@ -1,0 +1,51 @@
+# install postgresql and backups scripts.
+# each user defined in {{database_users}} gets a separate database created.
+---
+- name: Install postgres
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+  - postgresql
+  - postgresql-client
+  - python-psycopg2
+- name: Create databases
+  become: true
+  become_user: postgres
+  become_method: sudo
+  postgresql_db:
+    name: "{{item.name}}"
+  with_items: "{{database_users}}"
+  no_log: true
+- name: Create database users
+  become: true
+  become_user: postgres
+  become_method: sudo
+  postgresql_user:
+    name: "{{item.name}}"
+    state: present
+    encrypted: true
+    password: "{{item.pass}}"
+  with_items: "{{database_users}}"
+  no_log: true
+- name: Create backup directory
+  file:
+    path: /home/dbbackup
+    state: directory
+    mode: 0700
+    owner: postgres
+    group: postgres
+- name: Copy database backup script
+  copy:
+    src: files/dbbackup.sh
+    dest: /var/lib/postgresql/dbbackup.sh
+    mode: 0550
+    owner: root
+    group: postgres
+- name: Schedule database backups
+  cron:
+    name: dbbackup
+    user: postgres
+    hour: 2
+    minute: 0
+    job: /var/lib/postgresql/dbbackup.sh
