@@ -8,7 +8,7 @@ iface eth0 inet dhcp
 
 iface {{wifi_device}} inet manual
 
-iface {{bridge_device}}
+iface {{bridge_device}} inet static
     bridge_ports {{wifi_device}} eth0
     address {{bridge_address}}
     netmask {{bridge_netmask}}
