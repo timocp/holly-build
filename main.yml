@@ -12,6 +12,7 @@
   - include: wifi.yml
   - include: dlna.yml
   - include: database.yml
+  - include: web.yml
   - name: Configure user tim
     user:
       name: tim
@@ -19,6 +20,10 @@
       groups: sudo,export
       append: yes
   handlers:
+    - name: Restart apache
+      service:
+        name: apache2
+        state: restarted
     - name: Restart samba
       service: name={{item}} state=restarted
       with_items:

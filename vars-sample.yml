@@ -16,3 +16,5 @@ database_users:
   # echo md5$(echo -n "pass1user1" | md5sum) 
   - name: user1
     pass: md55e4eab96e8b9868ed28cc79c9ceec8b3
+certbot_domain: something.example.com
+certbot_email: something@example.com

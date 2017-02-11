@@ -1,0 +1,45 @@
+---
+- name: Install apache
+  apt:
+    name: apache2
+- name: Install certbot
+  apt:
+    name: python-certbot-apache
+    default_release: jessie-backports
+- name: Enable apache modules
+  apache2_module:
+    name: "{{item}}"
+  with_items:
+  - headers
+  - ssl
+  notify: Restart apache
+- name: Request SSL certificate
+  command: certbot certonly --non-interactive --agree-tos --webroot -w /var/www/html -d {{certbot_domain}} -m {{certbot_email}} --rsa-key-size 4096 --preferred-challenges http
+  args:
+    creates: /etc/letsencrypt/live/{{certbot_domain}}/fullchain.pem
+- name: Schedule SSL certificate renewal
+  cron:
+    name: ssl_renewal
+    user: root
+    hour: 2
+    minute: 57
+    job: certbot renew --post-hook "systemctl reload apache2"
+- name: Create apache SSL config
+  template:
+    src: ssl.conf
+    dest: /etc/apache2/sites-available/ssl.conf
+    force: no  # create only
+  notify: Restart apache
+- name: Enable site
+  command: a2ensite ssl creates=/etc/apache2/sites-enabled/ssl.conf
+  notify: Restart apache
+- name: Disable indexes
+  replace:
+    dest: /etc/apache2/apache2.conf
+    regexp: "Options Indexes FollowSymLinks"
+    replace: "Options FollowSymLinks"
+  notify: Restart apache
+- name: Remove default index.html
+  file:
+    path: /var/www/html/index.html
+    state: absent
