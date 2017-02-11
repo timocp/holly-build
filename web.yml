@@ -11,6 +11,8 @@
     name: "{{item}}"
   with_items:
   - headers
+  - proxy
+  - proxy_http
   - ssl
   notify: Restart apache
 - name: Request SSL certificate
