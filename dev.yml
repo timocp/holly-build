@@ -26,6 +26,7 @@
   - bison
   - pkg-config
   - libffi-dev
+  - exuberant-ctags
 - name: Download Go
   get_url:
     url: https://storage.googleapis.com/golang/go{{go_version}}.linux-amd64.tar.gz

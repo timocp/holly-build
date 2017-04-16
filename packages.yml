@@ -11,15 +11,19 @@
     name: "{{item}}"
     state: present
   with_items:
-  - apg     # password generatod
+  - apg             # password generator
   - apt-file
   - bmon
   - curl
+  - debian-goodies
   - ntp
+  - poppler-utils   # pdf utils
   - rsync
   - screen
   - sudo
-  - sxiv    # simple image viewer
+  - sxiv            # simple image viewer
+  - unzip
   - vim-gtk
   - xauth
+  - zip
   - zsh
