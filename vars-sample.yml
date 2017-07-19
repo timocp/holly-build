@@ -8,8 +8,8 @@ bridge_netmask: 255.255.255.0
 bridge_network: 192.168.178.0
 bridge_gateway: 192.168.178.1
 bridge_dns: 192.168.178.1
-go_version: 1.7.4
-go_checksum: 47fda42e46b4c3ec93fa5d4d4cc6a748aa3f9411a2a2b7e08e3a6d80d753ec8b
+go_version: 1.8.3
+go_checksum: 1862f4c3d3907e59b04a757cfda0ea7aa9ef39274af99a784f5be843c80c6772
 minecraft_version: 1.12
 minecraft_checksum: sha1:8494e844e911ea0d63878f64da9dcc21f53a3463
 database_users:

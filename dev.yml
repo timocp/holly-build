@@ -32,9 +32,18 @@
     url: https://storage.googleapis.com/golang/go{{go_version}}.linux-amd64.tar.gz
     dest: /usr/local/src/go{{go_version}}.linux-amd64.tar.gz
     checksum: sha256:{{go_checksum}}
-- name: Install Go
+- name: Create directory for Go {{go_version}}
+  file:
+    path: /usr/local/go{{go_version}}
+    state: directory
+- name: Install Go {{go_version}}
   unarchive:
     remote_src: yes
     src: /usr/local/src/go{{go_version}}.linux-amd64.tar.gz
-    dest: /usr/local
-    creates: /usr/local/go
+    dest: /usr/local/go{{go_version}}
+    creates: /usr/local/go{{go_version}}/go
+- name: Create symlink at /usr/local/go
+  file:
+    src: /usr/local/go{{go_version}}/go
+    dest: /usr/local/go
+    state: link
