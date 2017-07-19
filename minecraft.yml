@@ -4,7 +4,7 @@
     name: minecraft
 - name: Install java
   apt:
-    name: openjdk-7-jre
+    name: openjdk-8-jre-headless
     state: present
 - name: Create server directory
   file:
