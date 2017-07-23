@@ -10,6 +10,8 @@
   - qt5-default         # for neovim-qt
   - python3
   - python3-pip
+  - python-cxx-dev
+  - python3-cxx-dev
   # rvm's ruby deps:
   - gawk
   - g++
