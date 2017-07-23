@@ -5,6 +5,11 @@
     state: present
   with_items:
   - git
+  - cmake
+  - libtool-bin
+  - qt5-default         # for neovim-qt
+  - python3
+  - python3-pip
   # rvm's ruby deps:
   - gawk
   - g++
