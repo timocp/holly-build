@@ -12,6 +12,8 @@
   - python3-pip
   - python-cxx-dev
   - python3-cxx-dev
+  - cppcheck
+  - yamllint
   # rvm's ruby deps:
   - gawk
   - g++
