@@ -48,7 +48,7 @@
     state: directory
 - name: Install Go {{go_version}}
   unarchive:
-    remote_src: yes
+    remote_src: true
     src: /usr/local/src/go{{go_version}}.linux-amd64.tar.gz
     dest: /usr/local/go{{go_version}}
     creates: /usr/local/go{{go_version}}/go
