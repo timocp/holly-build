@@ -6,9 +6,9 @@
     name: "{{item}}"
     state: present
   with_items:
-  - postgresql
-  - postgresql-client
-  - python-psycopg2
+    - postgresql
+    - postgresql-client
+    - python-psycopg2
 - name: Create databases
   become: true
   become_user: postgres
@@ -49,3 +49,8 @@
     hour: 2
     minute: 0
     job: /var/lib/postgresql/dbbackup.sh
+- name: Set default timezone to UTC
+  lineinfile:
+    path: /etc/postgresql/9.4/main/postgresql.conf
+    regexp: '^timezone ='
+    line: "timezone = 'UTC'"
