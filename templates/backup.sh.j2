@@ -1,11 +1,25 @@
 #! /bin/sh
 
+echo "Syncing local mirror"
+echo "--------------------"
+
+rsync -a --bwlimit=9M --delete --delete-excluded \
+  --exclude '/home/**/tmp' \
+  --exclude '/home/*/.cache' \
+  --exclude '/home/*/.rvm' \
+  /root /home /etc \
+  /srv/mirror
+
+echo "Running offsite backup"
+echo "----------------------"
+
 if ! test -e /root/.passphrase; then
     echo "Backup passphrase missing from /root/.passphrase" 1>&2
     exit 1
 fi
 
 dupe="duplicity --name holly --archive-dir /srv/duplicity-archive"
+target="{{backup_target}}"
 
 read PASSPHRASE < /root/.passphrase
 export PASSPHRASE
@@ -19,10 +33,7 @@ $dupe \
     --include /home \
     --include /etc \
     --exclude '**' \
-    / file:///srv/backup
-
-# make world readable (for offsite sync)
-chmod a+r /srv/backup/*
+    / $target
 
 # remove backups not needed for restores of files older than 2 months
-$dupe remove-older-than 2M --force file:///srv/backup
+$dupe remove-older-than 2M --force $target

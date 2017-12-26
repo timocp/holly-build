@@ -1,21 +1,45 @@
 ---
-- name: Create backup directory
+- name: Install dependencies for duplicity
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - librsync-dev
+    - python-fasteners
+- name: Install B2 python APIs
+  pip:
+    name: b2
+- name: Create directory for local mirror
   file:
-    path: /srv/backup
+    path: /srv/mirror
     state: directory
-    mode: 0755
-- name: Create archive directory
+    mode: 0700
+- name: Create directory for duplicity archive
   file:
     path: /srv/duplicity-archive
     state: directory
     mode: 0700
-- name: Install duplicity
+- name: Remove debian duplicity package
   apt:
     name: duplicity
-    state: present
+    state: absent
+- name: Download duplicity
+  get_url:
+    url: https://code.launchpad.net/duplicity/0.7-series/0.7.15/+download/duplicity-0.7.15.tar.gz
+    dest: /usr/local/src/duplicity-0.7.15.tar.gz
+    checksum: sha256:50bf7d14413284ecb036146ab9ba0e271937f2fa7826f8c8300b2965eb450a6c
+- name: Uncompress duplicity
+  unarchive:
+    src: /usr/local/src/duplicity-0.7.15.tar.gz
+    dest: /usr/local/src
+- name: Install duplicity
+  command: python setup.py install --prefix=/usr/local
+  args:
+    chdir: /usr/local/src/duplicity-0.7.15
+    creates: /usr/local/bin/duplicity
 - name: Copy backup script
-  copy:
-    src: files/backup.sh
+  template:
+    src: templates/backup.sh.j2
     dest: /root/backup.sh
     mode: 0700
 - name: Schedule backups

@@ -19,3 +19,4 @@ database_users:
     pass: md55e4eab96e8b9868ed28cc79c9ceec8b3
 certbot_domain: something.example.com
 certbot_email: something@example.com
+backup_target: b2://account_id:application_key@bucket_name
