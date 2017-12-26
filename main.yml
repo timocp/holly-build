@@ -10,6 +10,7 @@
   - include: backup.yml
   - include: dev.yml
   - include: wifi.yml
+    when: wifi_enabled
   - include: dlna.yml
   - include: database.yml
   - include: web.yml

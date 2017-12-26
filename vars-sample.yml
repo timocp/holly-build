@@ -1,4 +1,5 @@
 ---
+wifi_enabled: false
 wifi_ssid: "****"
 wifi_pass: "****"
 wifi_device: wlan0

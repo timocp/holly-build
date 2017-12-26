@@ -4,11 +4,11 @@
     name: "{{item}}"
     state: present
   with_items:
-  - firmware-iwlwifi
-  - iw
-  - wireless-tools
-  - hostapd
-  - bridge-utils
+    - firmware-iwlwifi
+    - iw
+    - wireless-tools
+    - hostapd
+    - bridge-utils
 - name: Load wifi kernel module
   modprobe:
     name: iwlwifi
