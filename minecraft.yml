@@ -27,10 +27,10 @@
 - name: Agree to minecraft eula
   lineinfile:
     dest: /home/minecraft/server/eula.txt
-    create: yes
+    create: true
     line: "eula=TRUE"
 - name: Start minecraft service
   service:
     name: minecraft
-    enabled: yes
+    enabled: true
     state: started

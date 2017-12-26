@@ -10,10 +10,10 @@
   apache2_module:
     name: "{{item}}"
   with_items:
-  - headers
-  - proxy
-  - proxy_http
-  - ssl
+    - headers
+    - proxy
+    - proxy_http
+    - ssl
   notify: Restart apache
 - name: Request SSL certificate
   command: certbot certonly --non-interactive --agree-tos --webroot -w /var/www/html -d {{certbot_domain}} -m {{certbot_email}} --rsa-key-size 4096 --preferred-challenges http
@@ -30,7 +30,7 @@
   template:
     src: ssl.conf
     dest: /etc/apache2/sites-available/ssl.conf
-    force: no  # create only
+    force: false  # create only
   notify: Restart apache
 - name: Enable site
   command: a2ensite ssl creates=/etc/apache2/sites-enabled/ssl.conf

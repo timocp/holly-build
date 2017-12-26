@@ -1,25 +1,25 @@
 ---
 - hosts: all
   remote_user: tim
-  become: yes
+  become: true
   become_method: su
   tasks:
-  - include: packages.yml
-  - include: samba.yml
-  - include: minecraft.yml
-  - include: backup.yml
-  - include: dev.yml
-  - include: wifi.yml
-    when: wifi_enabled
-  - include: dlna.yml
-  - include: database.yml
-  - include: web.yml
-  - name: Configure user tim
-    user:
-      name: tim
-      shell: /usr/bin/zsh
-      groups: sudo,export
-      append: yes
+    - include: packages.yml
+    - include: samba.yml
+    - include: minecraft.yml
+    - include: backup.yml
+    - include: dev.yml
+    - include: wifi.yml
+      when: wifi_enabled
+    - include: dlna.yml
+    - include: database.yml
+    - include: web.yml
+    - name: Configure user tim
+      user:
+        name: tim
+        shell: /usr/bin/zsh
+        groups: sudo,export
+        append: true
   handlers:
     - name: Restart apache
       service:
@@ -28,9 +28,9 @@
     - name: Restart samba
       service: name={{item}} state=restarted
       with_items:
-      - smbd
-      - nmbd
-      - samba-ad-dc
+        - smbd
+        - nmbd
+        - samba-ad-dc
     - name: Restart hostapd
       service:
         name: hostapd
