@@ -1,14 +1,9 @@
 ---
-wifi_enabled: false
+wifi_enabled: true
 wifi_ssid: "****"
 wifi_pass: "****"
 wifi_device: wlan0
 bridge_device: br0
-bridge_address: 192.168.178.35
-bridge_netmask: 255.255.255.0
-bridge_network: 192.168.178.0
-bridge_gateway: 192.168.178.1
-bridge_dns: 192.168.178.1
 go_version: 1.9.2
 go_checksum: de874549d9a8d8d8062be05808509c09a88a248e77ec14eb77453530829ac02b
 minecraft_version: 1.12
