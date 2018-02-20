@@ -18,7 +18,7 @@ if ! test -e /root/.passphrase; then
     exit 1
 fi
 
-dupe="duplicity --name holly --archive-dir /srv/duplicity-archive"
+dupe="/usr/local/bin/duplicity --name holly --archive-dir /srv/duplicity-archive"
 target="{{backup_target}}"
 
 read PASSPHRASE < /root/.passphrase
