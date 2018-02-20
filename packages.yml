@@ -27,5 +27,6 @@
     - unzip
     - vim-gtk
     - xauth
+    - xsel
     - zip
     - zsh
