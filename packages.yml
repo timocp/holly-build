@@ -16,7 +16,9 @@
     - bmon
     - curl
     - debian-goodies
+    - ffmpeg
     - lame
+    - mp3info
     - mplayer2
     - ntp
     - poppler-utils   # pdf utils
