@@ -4,27 +4,18 @@
     name: "{{item}}"
     state: present
   with_items:
-    - cmake
-    - cppcheck
-    - git
-    - jq  # json processor
-    - libtool-bin
-    - python3
-    - python3-cxx-dev
-    - python3-pip
-    - python-cxx-dev
-    - qt5-default  # for neovim-qt
-    - r-base
-    - r-base-dev
-    - yamllint
-    # rvm's ruby deps:
     - autoconf
     - automake
     - bison
+    - cmake
+    - cppcheck
     - exuberant-ctags
     - g++
     - gawk
     - gcc
+    - gettext
+    - git
+    - jq  # json processor
     - libc6-dev
     - libffi-dev
     - libgdbm-dev
@@ -34,10 +25,21 @@
     - libsqlite3-dev
     - libssl-dev
     - libtool
+    - libtool-bin
     - libyaml-dev
     - make
+    - ninja-build
     - pkg-config
+    - python-cxx-dev
+    - python3
+    - python3-cxx-dev
+    - python3-pip
+    - qt5-default  # for neovim-qt
+    - r-base
+    - r-base-dev
     - sqlite3
+    - unzip
+    - yamllint
     - zlib1g-dev
 - name: Download Go
   get_url:
@@ -59,3 +61,7 @@
     src: /usr/local/go{{go_version}}/go
     dest: /usr/local/go
     state: link
+- name: Add go to path for all users
+  copy:
+    content: "export PATH=$PATH:/usr/local/go/bin\n"
+    dest: /etc/profile.d/gopath.sh

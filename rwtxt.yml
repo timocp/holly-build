@@ -1,0 +1,27 @@
+---
+- name: Create rwtxt user
+  user:
+    name: rwtxt
+- name: Clone rwtxt repo
+  git:
+    repo: https://github.com/schollz/rwtxt.git
+    dest: /home/rwtxt/rwtxt
+    version: v1.4.1
+- name: Create build script
+  copy:
+    src: files/build-rwtxt.sh
+    dest: /home/rwtxt/build.sh
+- name: Build rwtxt
+  command: sh build.sh
+  args:
+    chdir: /home/rwtxt
+    creates: /home/rwtxt/go/bin/rwtxt
+- name: Configure rwtxt service
+  copy:
+    src: files/rwtxt.service
+    dest: /etc/systemd/system/rwtxt.service
+- name: Start rwtxt service
+  service:
+    name: rwtxt
+    enabled: true
+    state: started

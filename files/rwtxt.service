@@ -1,0 +1,13 @@
+[Unit]
+Description=rwtxt
+After=network.target
+
+[Service]
+User=rwtxt
+WorkingDirectory=/home/rwtxt
+ExecStart=/home/rwtxt/go/bin/rwtxt
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

@@ -14,6 +14,7 @@
     - include: dlna.yml
     - include: database.yml
     - include: web.yml
+    - include: rwtxt.yml
     - name: Configure user tim
       user:
         name: tim
