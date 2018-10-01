@@ -4,9 +4,9 @@
     name: rwtxt
 - name: Clone rwtxt repo
   git:
-    repo: https://github.com/schollz/rwtxt.git
+    repo: https://github.com/timocp/rwtxt.git
     dest: /home/rwtxt/rwtxt
-    version: v1.4.1
+    version: develop
 - name: Create build script
   copy:
     src: files/build-rwtxt.sh
