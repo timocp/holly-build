@@ -35,6 +35,10 @@
 - name: Enable site
   command: a2ensite ssl creates=/etc/apache2/sites-enabled/ssl.conf
   notify: Restart apache
+- name: Enable proxy_wstunnel
+  apache2_module:
+    state: present
+    name: proxy_wstunnel
 - name: Disable indexes
   replace:
     dest: /etc/apache2/apache2.conf
