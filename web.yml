@@ -25,7 +25,7 @@
     user: root
     hour: 2
     minute: 57
-    job: certbot renew --post-hook "systemctl reload apache2"
+    job: certbot renew --quiet --post-hook "systemctl reload apache2"
 - name: Create apache SSL config
   template:
     src: ssl.conf
