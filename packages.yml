@@ -17,6 +17,7 @@
     - curl
     - debian-goodies
     - ffmpeg
+    - jmtpfs          # mount MTP eg phone
     - lame
     - mp3info
     - mplayer2
