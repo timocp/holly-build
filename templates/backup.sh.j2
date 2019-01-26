@@ -7,6 +7,8 @@ rsync -a --bwlimit=9M --delete --delete-excluded \
   --exclude '/home/**/tmp' \
   --exclude '/home/*/.cache' \
   --exclude '/home/*/.rvm' \
+  --exclude '/home/*/.rustup' \
+  --exclude '/home/*/dev/*/target' \
   /root /home /etc \
   /srv/mirror
 
@@ -30,6 +32,8 @@ $dupe \
     --exclude '/home/**/tmp' \
     --exclude '/home/*/.cache' \
     --exclude '/home/*/.rvm' \
+    --exclude '/home/*/.rustup' \
+    --exclude '/home/*/dev/*/target' \
     --include /home \
     --include /etc \
     --exclude '**' \
