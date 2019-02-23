@@ -3,10 +3,5 @@ source /etc/network/interfaces.d/*
 auto lo {{bridge_device}}
 iface lo inet loopback
 
-allow-hotplug eth0
-iface eth0 inet dhcp
-
-iface {{wifi_device}} inet manual
-
 iface {{bridge_device}} inet dhcp
     bridge_ports {{wifi_device}} eth0

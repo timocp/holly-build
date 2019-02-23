@@ -5,7 +5,6 @@
 - name: Install certbot
   apt:
     name: python-certbot-apache
-    default_release: jessie-backports
 - name: Enable apache modules
   apache2_module:
     name: "{{item}}"
