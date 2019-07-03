@@ -5,7 +5,7 @@ After=network.target
 [Service]
 User=rwtxt
 WorkingDirectory=/home/rwtxt
-ExecStart=/home/rwtxt/go/bin/rwtxt
+ExecStart=/home/rwtxt/bin/rwtxt
 Restart=always
 RestartSec=60
 

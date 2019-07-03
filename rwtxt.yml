@@ -15,7 +15,7 @@
   command: sh build.sh
   args:
     chdir: /home/rwtxt
-    creates: /home/rwtxt/go/bin/rwtxt
+    creates: /home/rwtxt/bin/rwtxt
 - name: Configure rwtxt service
   copy:
     src: files/rwtxt.service
