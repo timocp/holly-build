@@ -6,9 +6,10 @@ wifi_device: wlan0
 bridge_device: br0
 go_version: "1.12.6"
 go_checksum: dbcf71a3c1ea53b8d54ef1b48c85a39a6c9a935d01fc8291ff2b92028e59913c
-minecraft_version: "1.13.2"
-minecraft_url: https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar
-minecraft_checksum: sha1:3737db93722a9e39eeada7c27e7aca28b144ffa7
+minecraft_enabled: false
+minecraft_version: "1.14.3"
+minecraft_url: https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar
+minecraft_checksum: sha1:d0d0fe2b1dc6ab4c65554cb734270872b72dadd6
 database_users:
   # echo md5$(echo -n "pass1user1" | md5sum)
   - name: user1

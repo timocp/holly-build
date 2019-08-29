@@ -32,5 +32,5 @@
 - name: Start minecraft service
   service:
     name: minecraft
-    enabled: true
-    state: started
+    enabled: "{{minecraft_enabled}}"
+    state: "{{ 'started' if minecraft_enabled else 'stopped' }}"
