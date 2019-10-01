@@ -26,7 +26,8 @@ target="{{backup_target}}"
 read PASSPHRASE < /root/.passphrase
 export PASSPHRASE
 
-$dupe \
+if $dupe \
+    --tempdir /var/tmp \
     --full-if-older-than 1M \
     --include /root \
     --exclude '/home/**/tmp' \
@@ -38,6 +39,11 @@ $dupe \
     --include /etc \
     --exclude '**' \
     / $target
-
-# remove backups not needed for restores of files older than 2 months
-$dupe remove-older-than 2M --force $target
+then
+    # remove backups not needed for restores of files older than 2 months
+    $dupe remove-older-than 2M --force $target
+else
+    echo "--------------"
+    echo "Backup failed! Exit code: $?"
+    echo "--------------"
+fi
