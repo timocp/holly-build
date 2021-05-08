@@ -47,3 +47,4 @@
         state: restarted
   vars_files:
     - vars.yml
+    - secrets.yml

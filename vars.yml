@@ -1,0 +1,7 @@
+---
+go_checksum: dbcf71a3c1ea53b8d54ef1b48c85a39a6c9a935d01fc8291ff2b92028e59913c
+go_version: "1.12.6"
+minecraft_checksum: sha1:d0d0fe2b1dc6ab4c65554cb734270872b72dadd6
+minecraft_enabled: false
+minecraft_url: https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar
+minecraft_version: "1.14.3"
