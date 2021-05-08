@@ -5,6 +5,7 @@
   become_method: su
   tasks:
     - include: packages.yml
+    - include: x11.yml
     - include: samba.yml
     - include: minecraft.yml
     - include: backup.yml
