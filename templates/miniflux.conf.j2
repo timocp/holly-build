@@ -1,0 +1,10 @@
+# See https://miniflux.app/docs/configuration.html
+
+BASE_URL=https://ravenclaw.hopto.org/flux/
+
+RUN_MIGRATIONS=1
+DATABASE_URL=postgres://miniflux:{{miniflux_password}}@localhost/miniflux
+
+CREATE_ADMIN=1
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD={{miniflux_password}}

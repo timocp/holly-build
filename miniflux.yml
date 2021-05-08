@@ -1,0 +1,42 @@
+# Install miniflux.  Database and pg user created in database.yml
+---
+- name: Download miniflux
+  get_url:
+    url: "https://github.com/miniflux/v2/releases/download/{{miniflux_version}}/{{miniflux_deb}}"
+    dest: "/usr/local/src/{{miniflux_deb}}"
+    checksum: "{{miniflux_checksum}}"
+- name: Create database
+  become: true
+  become_user: postgres
+  become_method: sudo
+  postgresql_db:
+    name: miniflux
+- name: Create database user
+  become: true
+  become_user: postgres
+  become_method: sudo
+  postgresql_user:
+    name: miniflux
+    state: present
+    encrypted: true
+    password: "{{miniflux_password}}"
+- name: Create HSTORE PG extension
+  become: true
+  become_user: postgres
+  become_method: sudo
+  postgresql_ext:
+    db: miniflux
+    name: hstore
+- name: Install miniflux
+  apt:
+    deb: "/usr/local/src/{{miniflux_deb}}"
+- name: Configure miniflux
+  template:
+    src: templates/miniflux.conf.j2
+    dest: /etc/miniflux.conf
+    mode: 0700
+- name: Start Miniflux
+  service:
+    name: miniflux
+    enabled: true
+    state: started

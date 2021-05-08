@@ -16,6 +16,7 @@
     - include: database.yml
     - include: web.yml
     - include: rwtxt.yml
+    - include: miniflux.yml
     - name: Configure user tim
       user:
         name: tim
