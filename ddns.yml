@@ -1,0 +1,12 @@
+---
+- name: Install ddns script
+  template:
+    src: templates/ddns.sh.j2
+    dest: /root/ddns.sh
+    mode: 0700
+- name: Schedule script
+  cron:
+    name: ddns
+    user: root
+    minute: "*/15"
+    job: /root/ddns.sh

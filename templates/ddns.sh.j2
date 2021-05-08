@@ -1,0 +1,4 @@
+#! /bin/sh
+
+curl -sS -u "{{ddns_username}}:{{ddns_password}}" "{{ddns_url}}" >> /var/log/ddns.log
+echo "" >> /var/log/ddns.log
