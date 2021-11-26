@@ -7,11 +7,8 @@
     - include: packages.yml
     - include: x11.yml
     - include: samba.yml
-    - include: minecraft.yml
     - include: backup.yml
     - include: dev.yml
-    - include: wifi.yml
-      when: wifi_enabled
     - include: dlna.yml
     - include: database.yml
     - include: web.yml
@@ -21,7 +18,7 @@
     - name: Configure user tim
       user:
         name: tim
-        shell: /usr/bin/zsh
+        shell: /usr/bin/fish
         groups: sudo,export
         append: true
   handlers:
@@ -34,7 +31,6 @@
       with_items:
         - smbd
         - nmbd
-        - samba-ad-dc
     - name: Restart hostapd
       service:
         name: hostapd

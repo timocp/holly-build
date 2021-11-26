@@ -4,7 +4,7 @@
     name: apache2
 - name: Install certbot
   apt:
-    name: python-certbot-apache
+    name: python3-certbot-apache
 - name: Enable apache modules
   apache2_module:
     name: "{{item}}"
@@ -22,8 +22,8 @@
   cron:
     name: ssl_renewal
     user: root
-    hour: 2
-    minute: 57
+    hour: "2"
+    minute: "57"
     job: certbot renew --quiet --post-hook "systemctl reload apache2"
 - name: Create apache SSL config
   template:

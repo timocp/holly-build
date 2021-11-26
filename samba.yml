@@ -1,7 +1,10 @@
+# Manually execute after running:
+#  smbpasswd -a export
 ---
 - name: Create export user
   user:
     name: export
+    uid: 1001
 - name: Create media directory
   file:
     path: /srv/media
@@ -11,7 +14,9 @@
     group: export
 - name: Install samba
   apt:
-    name: samba
+    name:
+      - samba
+      - smbclient
     state: present
 - name: Copy samba configuration file
   copy:

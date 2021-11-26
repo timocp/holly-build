@@ -2,6 +2,7 @@
 - name: Create rwtxt user
   user:
     name: rwtxt
+    uid: 1004
 - name: Clone rwtxt repo
   git:
     repo: https://github.com/timocp/rwtxt.git

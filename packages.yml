@@ -5,28 +5,31 @@
     cache_valid_time: 3600
 - name: Install basic packages
   apt:
-    name: "{{item}}"
     state: present
-  with_items:
-    - apg             # password generator
-    - apt-file
-    - bmon
-    - curl
-    - debian-goodies
-    - ffmpeg
-    - jmtpfs          # mount MTP eg phone
-    - lame
-    - mp3info
-    - mplayer2
-    - ntp
-    - poppler-utils   # pdf utils
-    - rsync
-    - screen
-    - sudo
-    - sxiv            # simple image viewer
-    - unzip
-    - vim-gtk
-    - xauth
-    - xsel
-    - zip
-    - zsh
+    name:
+      - apg             # password generator
+      - apt-file
+      - bmon
+      - curl
+      - debian-goodies
+      - easy-rsa
+      - fish
+      - ffmpeg
+      - iftop
+      - jmtpfs          # mount MTP eg phone
+      - lame
+      - mp3info
+      - mpv
+      - net-tools
+      - ntp
+      - poppler-utils   # pdf utils
+      - rsync
+      - screen
+      - sudo
+      - sxiv            # simple image viewer
+      - unzip
+      - vim-gtk
+      - xauth
+      - xsel
+      - zip
+      - zsh

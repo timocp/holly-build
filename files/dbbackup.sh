@@ -6,3 +6,7 @@ pg_dumpall | gzip > $target/backup-$(date -I).gz
 
 # delete backups older than 14 days, except always keep the first of any month
 find $target -mtime +14 -name "backup-*.gz" -not -name "backup-????-??-01.gz" -delete
+
+# To restore a complete database backup into a freshly created database:
+#  sudo su - postgres
+#  psql -f backup.sql

@@ -3,12 +3,11 @@
 ---
 - name: Install postgres
   apt:
-    name: "{{item}}"
     state: present
-  with_items:
-    - postgresql
-    - postgresql-client
-    - python-psycopg2
+    name:
+      - postgresql
+      - postgresql-client
+      - python3-psycopg2
 - name: Create databases
   become: true
   become_user: postgres
@@ -46,11 +45,11 @@
   cron:
     name: dbbackup
     user: postgres
-    hour: 2
-    minute: 0
+    hour: "2"
+    minute: "0"
     job: /var/lib/postgresql/dbbackup.sh
 - name: Set default timezone to UTC
   lineinfile:
-    path: /etc/postgresql/9.6/main/postgresql.conf
+    path: /etc/postgresql/13/main/postgresql.conf
     regexp: '^timezone ='
     line: "timezone = 'UTC'"

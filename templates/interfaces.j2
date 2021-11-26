@@ -1,7 +1,0 @@
-source /etc/network/interfaces.d/*
-
-auto lo {{bridge_device}}
-iface lo inet loopback
-
-iface {{bridge_device}} inet dhcp
-    bridge_ports {{wifi_device}} eth0

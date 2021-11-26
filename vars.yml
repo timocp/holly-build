@@ -1,10 +1,6 @@
 ---
 go_checksum: dbcf71a3c1ea53b8d54ef1b48c85a39a6c9a935d01fc8291ff2b92028e59913c
 go_version: "1.12.6"
-minecraft_checksum: sha1:d0d0fe2b1dc6ab4c65554cb734270872b72dadd6
-minecraft_enabled: false
-minecraft_url: https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar
-minecraft_version: "1.14.3"
-miniflux_version: "2.0.29"
+miniflux_version: "2.0.33"
 miniflux_deb: "miniflux_{{miniflux_version}}_amd64.deb"
-miniflux_checksum: sha256:3a356426c2acf6bf138a72dda7cdb8248c3e90c0218a8fa44d7f613fb21f6c72
+miniflux_checksum: sha256:898f94f2c384393c69dd1f36d6085c392bd4a356ebe19ec496e5fbbaf5c214c2

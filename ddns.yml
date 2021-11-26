@@ -8,5 +8,5 @@
   cron:
     name: ddns
     user: root
-    minute: 51
+    minute: "51"
     job: /root/ddns.sh

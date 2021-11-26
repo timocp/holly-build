@@ -1,6 +1,6 @@
 # See https://miniflux.app/docs/configuration.html
 
-BASE_URL=https://ravenclaw.hopto.org/flux/
+BASE_URL=https://{{certbot_domain}}/flux/
 
 RUN_MIGRATIONS=1
 DATABASE_URL=postgres://miniflux:{{miniflux_password}}@localhost/miniflux

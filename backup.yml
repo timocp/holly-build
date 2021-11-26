@@ -1,42 +1,41 @@
+# Manually after install:
+# - create /root/.passphrase with key used to encrypt remote backup
 ---
 - name: Install dependencies for duplicity
   apt:
-    name: "{{item}}"
     state: present
-  with_items:
-    - librsync-dev
-    - python-fasteners
-- name: Install B2 python APIs
+    name:
+      - pip
+- name: Install python dependencies
   pip:
-    name: b2
+    name:
+      - b2sdk
+      - fasteners
+      - future
 - name: Create directory for local mirror
   file:
     path: /srv/mirror
     state: directory
     mode: 0700
+- name: Download duplicity
+  get_url:
+    url: https://launchpad.net/duplicity/0.8-series/0.8.21/+download/duplicity-0.8.21.tar.gz
+    dest: /usr/local/src/duplicity-0.8.21.tar.gz
+    checksum: md5:5227dd503c251d8b678ea663b759cb98
+- name: Uncompress duplicity
+  unarchive:
+    src: /usr/local/src/duplicity-0.8.21.tar.gz
+    dest: /usr/local/src
+- name: Install duplicity
+  command: python3 setup.py install --prefix=/usr/local
+  args:
+    chdir: /usr/local/src/duplicity-0.8.21
+    creates: /usr/local/bin/duplicity
 - name: Create directory for duplicity archive
   file:
     path: /srv/duplicity-archive
     state: directory
     mode: 0700
-- name: Remove debian duplicity package
-  apt:
-    name: duplicity
-    state: absent
-- name: Download duplicity
-  get_url:
-    url: https://code.launchpad.net/duplicity/0.7-series/0.7.15/+download/duplicity-0.7.15.tar.gz
-    dest: /usr/local/src/duplicity-0.7.15.tar.gz
-    checksum: sha256:50bf7d14413284ecb036146ab9ba0e271937f2fa7826f8c8300b2965eb450a6c
-- name: Uncompress duplicity
-  unarchive:
-    src: /usr/local/src/duplicity-0.7.15.tar.gz
-    dest: /usr/local/src
-- name: Install duplicity
-  command: python setup.py install --prefix=/usr/local
-  args:
-    chdir: /usr/local/src/duplicity-0.7.15
-    creates: /usr/local/bin/duplicity
 - name: Copy backup script
   template:
     src: templates/backup.sh.j2
@@ -46,6 +45,6 @@
   cron:
     name: backup
     user: root
-    hour: 4
-    minute: 0
+    hour: "4"
+    minute: "0"
     job: /root/backup.sh
