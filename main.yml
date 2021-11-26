@@ -15,6 +15,7 @@
     - include: rwtxt.yml
     - include: miniflux.yml
     - include: ddns.yml
+    - include: neovim.yml
     - name: Configure user tim
       user:
         name: tim
