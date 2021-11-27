@@ -16,6 +16,7 @@
     - include: miniflux.yml
     - include: ddns.yml
     - include: neovim.yml
+    - include: ssh.yml
     - name: Configure user tim
       user:
         name: tim
@@ -43,6 +44,10 @@
     - name: Restart minidlna
       service:
         name: minidlna
+        state: restarted
+    - name: Restart sshd
+      service:
+        name: sshd
         state: restarted
   vars_files:
     - vars.yml
