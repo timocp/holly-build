@@ -1,0 +1,126 @@
+# redmine was previously installed via debian package but it doesn't exist in
+# bullseye yet: https://www.debian.org/releases/bullseye/amd64/release-notes/ch-information.en.html#redmine
+---
+- name: Install redmine prerequisites
+  apt:
+    state: present
+    name:
+      - ruby
+      - ruby-dev
+      - ruby-bundler
+      - libpq-dev
+      - imagemagick
+      - ghostscript
+- name: Create redmine service account
+  user:
+    name: redmine
+    home: /usr/local/redmine
+    uid: 1003
+- name: Download redmine
+  get_url:
+    url: "https://redmine.org/releases/{{redmine_tgz}}"
+    dest: "/usr/local/src/{{redmine_tgz}}"
+    checksum: "{{redmine_checksum}}"
+- name: Create redmine directory
+  file:
+    path: /usr/local/redmine
+    state: directory
+    owner: redmine
+    group: redmine
+    mode: 0711
+- name: Uncompress redmine
+  unarchive:
+    src: "/usr/local/src/{{redmine_tgz}}"
+    dest: /usr/local/redmine
+    creates: "{{redmine_root}}"
+    owner: redmine
+    group: redmine
+- name: Create redmine database
+  become: true
+  become_user: postgres
+  become_method: sudo
+  postgresql_db:
+    name: redmine_default
+- name: Create redmine database user
+  become: true
+  become_user: postgres
+  become_method: sudo
+  postgresql_user:
+    name: redmine/instances/default
+    state: present
+    encrypted: true
+    password: "{{redmine_password}}"
+- name: Configure redmine database
+  template:
+    src: templates/redmine_database.yml.j2
+    dest: "{{redmine_root}}/config/database.yml"
+    owner: redmine
+    group: redmine
+    mode: 0400
+- name: Configure bundler
+  command: "bundle config set --local without development:test"
+  become: true
+  become_user: redmine
+  become_method: sudo
+  args:
+    chdir: "{{redmine_root}}"
+- name: Configure bundler
+  command: "bundle config set --local path vendor/bundle"
+  become: true
+  become_user: redmine
+  become_method: sudo
+  args:
+    chdir: "{{redmine_root}}"
+- name: Install gems
+  command: "bundle install"
+  become: true
+  become_user: redmine
+  become_method: sudo
+  args:
+    chdir: "{{redmine_root}}"
+    creates: "{{redmine_root}}/Gemfile.lock"
+- name: Generate secret token
+  command: "bundle exec rake generate_secret_token"
+  become: true
+  become_user: redmine
+  become_method: sudo
+  args:
+    chdir: "{{redmine_root}}"
+    creates: "{{redmine_root}}/config/initializers/secret_token.rb"
+- name: Run db:migrate
+  command: "bundle exec rake db:migrate RAILS_ENV=production"
+  become: true
+  become_user: redmine
+  become_method: sudo
+  args:
+    chdir: "{{redmine_root}}"
+# NOTE: fresh install would redmine:load_default_data here
+- name: Create local directories
+  file:
+    state: directory
+    owner: redmine
+    group: redmine
+    mode: 0700
+    name: "{{item}}"
+  with_items:
+    - "/home/redmine/files"
+    - "/var/log/redmine"
+- name: Delete files/logs
+  file:
+    path: "{{item}}"
+    state: absent
+  with_items:
+    - "{{redmine_root}}/files"
+    - "{{redmine_root}}/log"
+- name: Create symlinks
+  file:
+    src: "{{item.src}}"
+    dest: "{{item.dest}}"
+    owner: redmine
+    group: redmine
+    state: link
+  with_items:
+    - src: /home/redmine/files
+      dest: "{{redmine_root}}/files"
+    - src: /var/log/redmine
+      dest: "{{redmine_root}}/log"

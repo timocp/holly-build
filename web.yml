@@ -1,7 +1,9 @@
 ---
 - name: Install apache
   apt:
-    name: apache2
+    name:
+      - apache2
+      - libapache2-mod-passenger
 - name: Install certbot
   apt:
     name: python3-certbot-apache
@@ -29,7 +31,6 @@
   template:
     src: ssl.conf
     dest: /etc/apache2/sites-available/ssl.conf
-    force: false  # create only
   notify: Restart apache
 - name: Enable site
   command: a2ensite ssl creates=/etc/apache2/sites-enabled/ssl.conf

@@ -17,6 +17,7 @@
     - include: ddns.yml
     - include: neovim.yml
     - include: ssh.yml
+    - include: redmine.yml
     - name: Configure user tim
       user:
         name: tim

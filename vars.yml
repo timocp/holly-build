@@ -4,3 +4,7 @@ go_version: "1.12.6"
 miniflux_version: "2.0.33"
 miniflux_deb: "miniflux_{{miniflux_version}}_amd64.deb"
 miniflux_checksum: sha256:898f94f2c384393c69dd1f36d6085c392bd4a356ebe19ec496e5fbbaf5c214c2
+redmine_version: "4.2.3"
+redmine_tgz: "redmine-{{redmine_version}}.tar.gz"
+redmine_root: "/usr/local/redmine/redmine-{{redmine_version}}"
+redmine_checksum: "sha256:72f633dc954217948558889ca85325fe6410cd18a2d8b39358e5d75932a47a0c"
