@@ -20,6 +20,7 @@
       - lame
       - mp3info
       - mpv
+      - neofetch
       - net-tools
       - ntp
       - poppler-utils   # pdf utils
