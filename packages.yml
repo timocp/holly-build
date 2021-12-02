@@ -13,12 +13,13 @@
       - curl
       - debian-goodies
       - easy-rsa
-      - fish
       - ffmpeg
+      - fish
       - iftop
       - jmtpfs          # mount MTP eg phone
       - lame
       - mp3info
+      - mplayer
       - mpv
       - neofetch
       - net-tools
@@ -30,6 +31,7 @@
       - sxiv            # simple image viewer
       - unzip
       - vim-gtk
+      - w3m
       - xauth
       - xsel
       - zip
