@@ -6,6 +6,7 @@ echo "--------------------"
 rsync -a --bwlimit=9M --delete --delete-excluded \
   --exclude '/home/**/tmp' \
   --exclude '/home/*/.cache' \
+  --exclude '/home/*/.cargo' \
   --exclude '/home/*/.rvm' \
   --exclude '/home/*/.rustup' \
   --exclude '/home/*/dev/*/target' \
