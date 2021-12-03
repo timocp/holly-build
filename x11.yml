@@ -3,11 +3,12 @@
   apt:
     state: present
     name:
+      - dbus-x11
       - desktop-base
       - firefox-esr
       - fonts-lmodern
-      - icewm
       - menu
+      - xfce4
       - terminator
       - tigervnc-standalone-server
       - xterm
