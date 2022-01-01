@@ -67,3 +67,16 @@
   copy:
     content: "export PATH=$PATH:/usr/local/go/bin\n"
     dest: /etc/profile.d/gopath.sh
+- name: Download rust-analyzer
+  get_url:
+    url: "https://github.com/rust-analyzer/rust-analyzer/releases/download/2021-12-27/rust-analyzer-x86_64-unknown-linux-gnu.gz"
+    dest: /usr/local/src/rust-analyzer.gz
+    checksum: sha256:0949e140631e40069720e8ce9a07c6257628720c26585d90e5d6b3ab75f996cd
+- name: Install rust-analyzer
+  shell: "gunzip -c /usr/local/src/rust-analyze.gz > /usr/local/bin/rust-analyzer"
+  args:
+    creates: /usr/local/bin/rust-analyzer
+- name: Set permissions on rust-analyzer
+  file:
+    path: /usr/local/bin/rust-analyzer
+    mode: 0555
