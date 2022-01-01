@@ -10,11 +10,14 @@
       - apg             # password generator
       - apt-file
       - bmon
+      - calc
       - curl
       - debian-goodies
       - easy-rsa
       - ffmpeg
       - fish
+      - graphviz
+      - handbrake
       - iftop
       - jmtpfs          # mount MTP eg phone
       - lame

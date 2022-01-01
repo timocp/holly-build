@@ -28,12 +28,16 @@
       - libtool
       - libtool-bin
       - libyaml-dev
+      - linux-perf
       - make
       - ninja-build
+      - octave
       - pkg-config
       - r-base
       - r-base-dev
+      - shellcheck
       - sqlite3
+      - strace
       - subversion
       - unzip
       - libxml2-utils
