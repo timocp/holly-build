@@ -1,7 +1,7 @@
 ---
 - name: Install Neovim
   get_url:
-    url: https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
+    url: https://github.com/neovim/neovim/releases/download/v0.6.1/nvim.appimage
     dest: /usr/local/bin/nvim
-    checksum: sha256:1cfbc587ea5598545ac045ee776965a005b1f0c26d5daf5479b859b092697439
+    checksum: sha256:ef9056e05ef6a4c1d0cdb8b21f79261703122c0fd31f23f782158d326fdadbf5
     mode: 0555
