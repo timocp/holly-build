@@ -14,7 +14,6 @@
     - include: web.yml
     - include: rwtxt.yml
     - include: miniflux.yml
-    - include: ddns.yml
     - include: neovim.yml
     - include: ssh.yml
     - include: redmine.yml
