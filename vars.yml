@@ -1,10 +1,10 @@
 ---
 go_checksum: dbcf71a3c1ea53b8d54ef1b48c85a39a6c9a935d01fc8291ff2b92028e59913c
 go_version: "1.12.6"
-minecraft_checksum: sha1:d0d0fe2b1dc6ab4c65554cb734270872b72dadd6
+minecraft_checksum: sha1:f69c284232d7c7580bd89a5a4931c3581eae1378
 minecraft_enabled: false
-minecraft_url: https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar
-minecraft_version: "1.14.3"
+minecraft_url: https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar
+minecraft_version: "1.19.2"
 miniflux_version: "2.0.33"
 miniflux_deb: "miniflux_{{miniflux_version}}_amd64.deb"
 miniflux_checksum: sha256:898f94f2c384393c69dd1f36d6085c392bd4a356ebe19ec496e5fbbaf5c214c2

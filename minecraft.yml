@@ -2,9 +2,14 @@
 - name: Create minecraft user
   user:
     name: minecraft
+- name: Download java 19  # MC 1.17+ requires 16 or greater, debian has 11
+  get_url:
+    url: https://download.oracle.com/java/19/latest/jdk-19_linux-x64_bin.deb
+    checksum: sha256:e9c63c57184dba4ae24173a65472719bb6c90b3c1580d60833bad11fcb58f6fe
+    dest: /opt/jdk-19_linux-x64_bin.deb
 - name: Install java
   apt:
-    name: openjdk-8-jre-headless
+    deb: /opt/jdk-19_linux-x64_bin.deb
     state: present
 - name: Create server directory
   file:
