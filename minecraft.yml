@@ -1,0 +1,36 @@
+---
+- name: Create minecraft user
+  user:
+    name: minecraft
+- name: Install java
+  apt:
+    name: openjdk-8-jre-headless
+    state: present
+- name: Create server directory
+  file:
+    path: /home/minecraft/server
+    state: directory
+    owner: minecraft
+    group: minecraft
+    mode: 0750
+- name: Download minecraft server software
+  get_url:
+    url: "{{minecraft_url}}"
+    checksum: "{{minecraft_checksum}}"
+    dest: /home/minecraft/server/minecraft_server.{{minecraft_version}}.jar
+    owner: minecraft
+    group: minecraft
+- name: Configure minecraft service
+  template:
+    src: templates/minecraft.service.j2
+    dest: /etc/systemd/system/minecraft.service
+- name: Agree to minecraft eula
+  lineinfile:
+    dest: /home/minecraft/server/eula.txt
+    create: true
+    line: "eula=TRUE"
+- name: Start minecraft service
+  service:
+    name: minecraft
+    enabled: "{{minecraft_enabled}}"
+    state: "{{ 'started' if minecraft_enabled else 'stopped' }}"
