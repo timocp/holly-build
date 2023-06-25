@@ -21,7 +21,7 @@
     - name: Configure user tim
       user:
         name: tim
-        shell: /usr/bin/fish
+        shell: /usr/bin/zsh
         groups: sudo,export
         append: true
   handlers:
