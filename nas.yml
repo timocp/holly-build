@@ -1,0 +1,26 @@
+---
+- name: Install dependencies
+  apt:
+    state: present
+    name:
+      - cifs-utils
+- name: Create credentials file
+  copy:
+    content: "username=holly\npassword=\n"
+    dest: /root/.nas_credentials
+    force: false
+- name: Create mount points
+  file:
+    path: "/mnt/{{ item }}"
+    state: directory
+    mode: 0700
+  loop: "{{ nas_shares }}"
+- name: Configure fstab
+  lineinfile:
+    path: /etc/fstab
+    line: "//{{ nas_ip }}/{{ item }} /mnt/{{ item }} cifs credentials=/root/.nas_credentials,uid=export,gid=export,file_mode=0660,dir_mode=0770 0 0"
+  loop: "{{ nas_shares }}"
+  register: fstab_result
+- name: Mount all
+  command: mount -a
+  when: fstab_result is changed

@@ -18,6 +18,7 @@
     - include: neovim.yml
     - include: ssh.yml
     - include: redmine.yml
+    - include: nas.yml
     - name: Configure user tim
       user:
         name: tim

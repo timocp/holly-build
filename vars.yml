@@ -8,6 +8,12 @@ minecraft_version: "1.19.2"
 miniflux_version: "2.0.33"
 miniflux_deb: "miniflux_{{miniflux_version}}_amd64.deb"
 miniflux_checksum: sha256:898f94f2c384393c69dd1f36d6085c392bd4a356ebe19ec496e5fbbaf5c214c2
+nas_ip: "192.168.0.101"
+nas_shares:
+  - Multimedia
+  - Shared
+  - Things
+  - holly-backup
 redmine_version: "4.2.3"
 redmine_tgz: "redmine-{{redmine_version}}.tar.gz"
 redmine_root: "/usr/local/redmine/redmine-{{redmine_version}}"
